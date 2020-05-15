@@ -45,7 +45,15 @@ router.get("/login", function(req, res) {
  * Forum Page - 
  * Notice loading our posts, with that include!
  */
-router.get("/forum", isAuthenticated, function(req, res) {
+router.get("/index", isAuthenticated, function(req, res) {
+  db.Post.findAll({ raw: true, include: [db.User] }) // Joins User to Posts! And scrapes all the seqeulize stuff off
+    .then(dbModel => {
+      res.render("forum", { user: req.user, posts: dbModel });
+    })
+    .catch(err => res.status(422).json(err));
+});
+
+router.get("/coordinates", isAuthenticated, function(req, res) {
   db.Post.findAll({ raw: true, include: [db.User] }) // Joins User to Posts! And scrapes all the seqeulize stuff off
     .then(dbModel => {
       res.render("forum", { user: req.user, posts: dbModel });
