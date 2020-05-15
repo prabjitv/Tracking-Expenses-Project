@@ -2,50 +2,47 @@ const db = require("../../models");
 const router = require("express").Router();
 
 /**
- * Post - Read All
+ * Category - Read All
  */
 router.get("/", function(req, res) {
-  db.Post.findAll(req.query)
+  db.Category.findAll(req.query)
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });
 
 /**
- * Post - Read One
+ * Category - Read One
  */
 router.get("/:id", function(req, res) {
-  db.Post.findById(req.params.id)
+  db.Category.findById(req.params.id)
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });
 
 /**
- * Post - Create
+ * Category - Create
  * Notice how we are also taking in the User Id! Important!
  */
 router.post("/", function(req, res) {
-  db.Post.create({
-    UserId: req.user.id,
-    ...req.body
-  })
+  db.Category.create()
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });
 
 /**
- * Post - Update
+ * Category - Update
  */
 router.put("/:id", function(req, res) {
-  db.Post.findOneAndUpdate({ id: req.params.id }, req.body)
+  db.Category.findOneAndUpdate({ id: req.params.id }, req.body)
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });
 
 /**
- * Post - Delete
+ * Category - Delete
  */
 router.delete("/:id", function(req, res) {
-  db.Post.findById({ id: req.params.id })
+  db.Category.findById({ id: req.params.id })
     .then(dbModel => dbModel.remove())
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
