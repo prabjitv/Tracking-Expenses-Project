@@ -84,7 +84,7 @@ It has three connections;
     * For your deployment. 
     * The username, host, port, password, and database name will be from your JAWS configuration. 
 
-Once you have down that; you are ready to run the server, with:
+Once you have done that; you are ready to run the server, with:
 
 ```
 npm run start
