@@ -15,7 +15,7 @@
                   <div class="field">
                     <div class="control">
                       <label for="exampleInputPassword1">Password</label>
-                      <input class="input is-info" type="password" name="password" placeholder="Password">
+                      <input id="password-input" class="input is-info" type="password" name="password" placeholder="Password">
                     </div>
                   </div>
 
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    
+                                     
 <script>
 $(document).ready(function() {
   // Getting references to our form and inputs
@@ -48,13 +48,13 @@ $(document).ready(function() {
   var passwordInput = $("input#password-input");
 
   // When the form is submitted, we validate there's an email and password entered
-  signup.on("submit", function(event) {
+  signup.on("click", function(event) {
     event.preventDefault();
     var userData = {
       email: emailInput.val(),
       password: passwordInput.val()
     };
-
+console.log(userData)
     if (!userData.email || !userData.password) {
       return;
     }
@@ -72,7 +72,7 @@ $(document).ready(function() {
       password: password
     })
       .then(function() {
-        window.location.replace("/forum");
+        window.location.replace("/dashboard");
         // If there's an error, log the error
       })
       .catch(function(err) {
