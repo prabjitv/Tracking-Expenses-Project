@@ -9,14 +9,14 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
  * Home Page
  */
 router.get("/", function (req, res) {
-  res.render("index", { user: req.user });
+  res.render("home", { user: req.user });
 });
 
 /**
  * Home Page, again 
  */
 router.get("/home", function (req, res) {
-  res.render("index", { user: req.user });
+  res.render("home", { user: req.user });
 });
 
 /** 
