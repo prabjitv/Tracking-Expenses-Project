@@ -1,0 +1,131 @@
+<div class="container is-fluid">
+    <div class="columns">
+        <div class="column">
+            <div class="title" style="text-align: center;">Coordinates</div>
+            <p>
+                Today's Date: {{createdAt}}
+            </p>
+
+            <div class="field">
+                <div class="control">
+                    <p>
+                        Enter Amount:
+                    </p>
+                    <input class="input is-info" type="text" placeholder="Amount">
+                </div>
+            </div>
+
+            <!-- Category Drop down menu  -->
+
+            <div id="category" class="dropdown ">
+                <!-- add is-active class with jquery-->
+                <div class="dropdown-trigger is-fluid">
+                    <button id="drop-btn" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                        <span>Category</span>
+                        <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu-max-width" role="menu">
+                    <div class="dropdown-content">
+                        <a class="dropdown-item">
+                            Food
+                        </a>
+                        <a class="dropdown-item">
+                            Bills
+                        </a>
+                        <a class="dropdown-item ">
+                            Rent
+                        </a>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <p>
+                            Chosen Category:
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end category block -->
+
+
+            <div class="field">
+                <div class="control">
+                    <p>
+                        Enter Company Name:
+                    </p>
+                    <input class="input is-info" type="text" placeholder="Company">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <p>
+                        Add a note:
+                    </p>
+                    <textarea class="textarea is-info" placeholder="Info textarea"></textarea>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button id="expense" class="button is-dark">Add Expense</button>
+                <button id="income" class="button is-dark">Add Income</button>
+            </div>
+
+        </div>
+        <div class="column">
+            Second column
+
+            <P> something can go here</P>
+
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Coordinate page js -->
+<script>
+    $(document).ready(function () {
+        const expense = $("#expense");
+        const income = $("#income");
+        const catBtn = $("#drop-btn");
+
+        // Check for click events on the navbar burger icon
+        $(".navbar-burger").click(function () {
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+        });
+
+        // category button function
+        $(catBtn).on("click", function () {
+            $("#category").toggleClass("is-active");
+            // add code to display chosen value from drop down in chosen category
+        })
+
+        // Add expense button
+        $(expense).on("click", function () {
+            // code goes here
+        })
+
+        // Add income button
+        $(income).on("click", function () {
+            // code goes here
+        })
+
+
+
+
+
+
+    })
+
+
+
+
+</script>
