@@ -24,7 +24,8 @@ router.get("/:id", function(req, res) {
  * Notice how we are also taking in the User Id! Important!
  */
 router.post("/", function(req, res) {
-  db.Category.create()
+  console.log(req.body)
+  db.Category.create(req.body)
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });

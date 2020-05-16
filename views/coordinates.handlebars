@@ -31,14 +31,14 @@
                     </button>
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu-max-width" role="menu">
-                    <div id="category" class="dropdown-content">
-                        <a class="dropdown-item">
+                    <div id="option" class="dropdown-content">
+                        <a class="dropdown-item" data-id = "1">
                             Food
                         </a>
-                        <a class="dropdown-item">
+                        <a class="dropdown-item" data-id = "2">
                             Bills
                         </a>
-                        <a class="dropdown-item ">
+                        <a class="dropdown-item "data-id = "3" >
                             Rent
                         </a>
                     </div>
@@ -99,7 +99,7 @@
         const catBtn = $("#drop-btn");
         // input values
         const amount = $("#amount");
-        const category = $("#category");
+        let category = "";
         const company = $("#company");
         const note = $("#note");
 
@@ -116,13 +116,19 @@
             // add code to display chosen value from drop down in chosen category
         })
 
+         $("#option .dropdown-item").on("click", function () {
+          category = $(this).data("id");
+            // add code to display chosen value from drop down in chosen category
+        })
+
+
         // Add expense button
         $(expense).on("click", function () {
             event.preventDefault();
-            console.log(amount.val(), category.val(), company.val(), note.val())
+            console.log(amount.val(), category, company.val(), note.val())
             var coorData = {
                 amount: amount.val().trim(),
-                category: category.val().trim(),
+                category: category,
                 company: company.val().trim(),
                 note: note.val().trim()
             };
@@ -135,7 +141,7 @@
             // If we have a title and password  we run the sendPost function and clear the form
             sendPost(coorData.amount, coorData.category, coorData.company, coorData.note);
             amount.val("");
-            category.val("");
+    
             company.val("");
             note.val("");
         });
@@ -144,9 +150,9 @@
         function sendPost(amount, category, company, note) {
             $.post("/api/coordinates", {
                 amount: amount,
-                category: category,
+                CategoryId: category,
                 company: company,
-                note: note,
+                notes: note,
             })
                 .then(function () {
                     window.location.replace("/coordinates");
