@@ -14,7 +14,7 @@
                     <p>
                         Enter Amount:
                     </p>
-                    <input class="input is-info" type="text" placeholder="Amount">
+                    <input id="amount" class="input is-info" type="text" placeholder="Amount">
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                     </button>
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu-max-width" role="menu">
-                    <div class="dropdown-content">
+                    <div id="category" class="dropdown-content">
                         <a class="dropdown-item">
                             Food
                         </a>
@@ -61,7 +61,7 @@
                     <p>
                         Enter Company Name:
                     </p>
-                    <input class="input is-info" type="text" placeholder="Company">
+                    <input id="company" class="input is-info" type="text" placeholder="Company">
                 </div>
             </div>
 
@@ -70,7 +70,7 @@
                     <p>
                         Add a note:
                     </p>
-                    <textarea class="textarea is-info" placeholder="Info textarea"></textarea>
+                    <textarea id="note" class="textarea is-info" placeholder="Info textarea"></textarea>
                 </div>
             </div>
 
@@ -97,6 +97,11 @@
         const expense = $("#expense");
         const income = $("#income");
         const catBtn = $("#drop-btn");
+        // input values
+        const amount = $("#amount");
+        const category = $("#category");
+        const company = $("#company");
+        const note = $("#note");
 
         // Check for click events on the navbar burger icon
         $(".navbar-burger").click(function () {
@@ -113,8 +118,46 @@
 
         // Add expense button
         $(expense).on("click", function () {
-            // code goes here
-        })
+            event.preventDefault();
+            console.log(amount.val(), category.val(), company.val(), note.val())
+            var coorData = {
+                amount: amount.val().trim(),
+                category: category.val().trim(),
+                company: company.val().trim(),
+                note: note.val().trim()
+            };
+
+            //if (!coorData.title || !coorData.body) {
+            //return;
+            // }
+
+
+            // If we have a title and password  we run the sendPost function and clear the form
+            sendPost(coorData.amount, coorData.category, coorData.company, coorData.note);
+            amount.val("");
+            category.val("");
+            company.val("");
+            note.val("");
+        });
+
+        // sendPost does a post to our "api/coordinate" route and if successful, redirects us the the forum page
+        function sendPost(amount, category, company, note) {
+            $.post("/api/coordinates", {
+                amount: amount,
+                category: category,
+                company: company,
+                note: note,
+            })
+                .then(function () {
+                    window.location.replace("/coordinates");
+                    // If there's an error, log the error
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+
+
+        }
 
         // Add income button
         $(income).on("click", function () {
