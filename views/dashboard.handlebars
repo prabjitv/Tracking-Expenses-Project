@@ -1,13 +1,17 @@
 {{> navbar user}}
 
+
+
 <div class="container is-fluid">
     <div class="columns">
         <div class="column">
             <div class="title" style="text-align: center;">HomePage!</div>
             <h4 class="display-6">Hello, {{user.email}}!</h4>
+            <br>
             <div class="box ">
                 <p>
-                    Current Balance: 
+                    Current Balance:
+
                 </p>
             </div>
 
@@ -15,7 +19,7 @@
 
             <div class="box">
                 <p>
-                    Spent Today: 
+                    Spent Today:
                 </p>
             </div>
 
@@ -23,7 +27,7 @@
 
             <div class="box">
                 <p>
-                    Earned Today: 
+                    Earned Today:
                 </p>
             </div>
 
@@ -31,11 +35,172 @@
 
             <div class="box">
                 <p>
-                    Difference: 
+                    Difference:
                 </p>
             </div>
 
+            {{!-- <div class="tabs is-centered is-boxed">
+                <ul>
+                    <li class="is-active">
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-image"></i></span>
+                            <span>THIS DAY</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-music"></i></span>
+                            <span>THIS WEEK</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-film"></i></span>
+                            <span>THIS MONTH</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-file-alt"></i></span>
+                            <span>THIS QUARTER</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
+            <nav class="level">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">BALANCE</p>
+                        <p class="title">1,000</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">INCOMING</p>
+                        <p class="title" style="color: green;">+2,000</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">OUTGOING</p>
+                        <p class="title" style="color: red;">-1,000</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">DELTA</p>
+                        <p class="title">+1,000</p>
+                    </div>
+                </div>
+            </nav>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <abbr title="date"> Date </abbr>
+                        </th>
+                        <th>
+                            <abbr title="amount"> Amount </abbr>
+                        </th>
+                        <th>
+                            <abbr title="company"> Company </abbr>
+                        </th>
+                        <th>
+                            <abbr title="category"> Category </abbr>
+                        </th>
+                        <th>
+                            <abbr title="notes"> Notes </abbr>
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            <abbr title="date"> Date </abbr>
+                        </th>
+                        <th>
+                            <abbr title="amount"> Amount </abbr>
+                        </th>
+                        <th>
+                            <abbr title="company"> Company </abbr>
+                        </th>
+                        <th>
+                            <abbr title="category"> Category </abbr>
+                        </th>
+                        <th>
+                            <abbr title="notes"> Notes </abbr>
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <th> 05/15 </th>
+                        <td> 2000 </td>
+                        <td> work </td>
+                        <td> income </td>
+                        <td>
+                            <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">
+                                Leicester City </a> <strong> (C) </strong> </td>
+                    </tr>
+                    <tr>
+                        <th> 05/15 </th>
+                        <td> 1000 </td>
+                        <td> Taco Shop </td>
+                        <td> food </td>
+                        <td>a bunch of notes
+                            <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">
+                                Leicester City </a> <strong> (C) </strong> </td>
+                    </tr>
+                    <tr>
+                        <th> 05/15 </th>
+                        <td> 500 </td>
+                        <td> freelance </td>
+                        <td> income </td>
+                        <td>
+                            <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">
+                                Leicester City </a> <strong> (C) </strong> </td>
+                    </tr>
+                    <tr>
+                        <th> 05/15 </th>
+                        <td> 500 </td>
+                        <td> work </td>
+                        <td> income </td>
+                        <td>
+                            <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">
+                                Leicester City </a> <strong> (C) </strong> </td>
+                    </tr>
+                    <tr>
+                        <th> 05/15 </th>
+                        <td> 2000 </td>
+                        <td> work </td>
+                        <td> income </td>
+                        <td>
+                            <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">
+                                Leicester City </a> <strong> (C) </strong> </td>
+                    </tr>
+                    <tr>
+                        <th> 05/15 </th>
+                        <td> 2000 </td>
+                        <td> work </td>
+                        <td> income </td>
+                        <td>
+                            <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">
+                                Leicester City </a> <strong> (C) </strong> </td>
+                    </tr>
+                    <tr>
+                        <th> 05/15 </th>
+                        <td> 2000 </td>
+                        <td> work </td>
+                        <td> income </td>
+                        <td>
+                            <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">
+                                Leicester City </a> <strong> (C) </strong> </td>
+                    </tr>
+                </tbody>
+            </table>
+ --}}
 
 
             <div class="buttons">
@@ -44,6 +209,10 @@
             </div>
 
         </div>
+
+
+
+        <br>
         <div class="column">
             <div class="title" style="text-align: center;">Trend Graph!</div>
 
