@@ -13,13 +13,13 @@ router.get("/", function (req, res) {
 });
 
 /**
- * Home Page, again 
+ * Home Page, again
  */
 router.get("/home", function (req, res) {
   res.render("home", { user: req.user });
 });
 
-/** 
+/**
  * Signup page
  */
 router.get("/signup", function (req, res) {
@@ -42,22 +42,71 @@ router.get("/login", function (req, res) {
 });
 
 /**
- * Forum Page - 
+ * Forum Page -
  * Notice loading our posts, with that include!
  */
 router.get("/dashboard", isAuthenticated, function (req, res) {
   db.Coordinate.findAll({
-    raw: true,
     where: {
       UserId: req.user.id
     },
-    include: [db.User]
+    include: [db.User],
+    raw: true
   }) // Joins User to Posts! And scrapes all the seqeulize stuff off
     .then(dbModel => {
-      res.render("dashboard", { user: req.user, coordinates: dbModel });
+      console.log(dbModel);
+      res.render("dashboard", {
+        user: req.user,
+        coordinates: dbModel,
+        balance: dbModel.reduce((acc, current) => {
+          return acc + current.amount;
+        }, 0),
+        spent: dbModel
+          .filter(coordinate => {
+            var startDate = new Date();
+            startDate.setHours(0, 0, 0);
+            var coordinateDate = new Date(coordinate.createdAt);
+            return coordinate.amount < 0 && coordinateDate > startDate;
+          })
+          .reduce((acc, current) => {
+            return acc + current.amount;
+          }, 0),
+        earned: dbModel
+          .filter(coordinate => {
+            var startDate = new Date();
+            startDate.setHours(0, 0, 0);
+            var coordinateDate = new Date(coordinate.createdAt);
+            return coordinate.amount > 0 && coordinateDate > startDate;
+          })
+          .reduce((acc, current) => {
+            return acc + current.amount;
+          }, 0),
+        difference: dbModel
+          .filter(coordinate => {
+            var startDate = new Date();
+            startDate.setHours(0, 0, 0);
+            var coordinateDate = new Date(coordinate.createdAt);
+            return coordinateDate > startDate;
+          })
+          .reduce((acc, current) => {
+            return acc + current.amount;
+          }, 0)
+
+      });
     })
     .catch(err => res.status(422).json(err));
 });
+
+// exports.getBestSellerItems = () =>
+//   SaleItem.findAll({
+//     attributes: [
+//       "itemId",
+//       [sequelize.fn("sum", sequelize.col("amount")), "total"]
+//     ],
+//     group: ["SaleItem.itemId"],
+//     raw: true,
+//     order: sequelize.literal("total DESC")
+//   });
 
 router.get("/coordinates", isAuthenticated, function (req, res) {
   db.Coordinate.findAll({
