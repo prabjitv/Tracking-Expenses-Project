@@ -20,7 +20,7 @@
 
             <!-- Category Drop down menu  -->
 
-            <div id="category" class="dropdown ">
+            <div id="category" class="dropdown is-hoverable ">
                 <!-- add is-active class with jquery-->
                 <div class="dropdown-trigger is-fluid">
                     <button id="drop-btn" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -46,7 +46,7 @@
 
                 <div class="field">
                     <div class="control">
-                        <p>
+                        <p class="chosen">
                             Chosen Category:
                         </p>
                     </div>
@@ -103,7 +103,7 @@
         const company = $("#company");
         const note = $("#note");
 
-        // Check for click events on the navbar burger icon
+           // Check for click events on the navbar burger icon
         $(".navbar-burger").click(function () {
             // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
             $(".navbar-burger").toggleClass("is-active");
@@ -116,13 +116,13 @@
             // add code to display chosen value from drop down in chosen category
         })
 
-        $("#option .dropdown-item").on("click", function () {
-            category = $(this).data("id");
+         $("#option .dropdown-item").on("click", function () {
+          category = $(this).data("id");
             // add code to display chosen value from drop down in chosen category
         })
 
 
-        // If expense button clicked
+        // Add expense button
 
         $(expense).on("click", function () {
             event.preventDefault();
