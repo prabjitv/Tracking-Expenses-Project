@@ -20,7 +20,7 @@
 
             <!-- Category Drop down menu  -->
 
-            <div id="category" class="dropdown ">
+            <div id="category" class="dropdown is-hoverable ">
                 <!-- add is-active class with jquery-->
                 <div class="dropdown-trigger is-fluid">
                     <button id="drop-btn" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -32,13 +32,13 @@
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu-max-width" role="menu">
                     <div id="option" class="dropdown-content">
-                        <a class="dropdown-item" data-id = "1">
+                        <a class="dropdown-item" data-id="1">
                             Food
                         </a>
-                        <a class="dropdown-item" data-id = "2">
+                        <a class="dropdown-item" data-id="2">
                             Bills
                         </a>
-                        <a class="dropdown-item "data-id = "3" >
+                        <a class="dropdown-item " data-id="3">
                             Rent
                         </a>
                     </div>
@@ -46,7 +46,7 @@
 
                 <div class="field">
                     <div class="control">
-                        <p>
+                        <p class="chosen">
                             Chosen Category:
                         </p>
                     </div>
@@ -111,15 +111,19 @@
         });
 
         // category button function
-        $(catBtn).on("click", function () {
-            $("#category").toggleClass("is-active");
-            // add code to display chosen value from drop down in chosen category
+        //$(catBtn).mouseover(function () {
+         //   $("#category").toggleClass("is-active");
+
+
+       // })
+
+
+        // code to display chosen value from drop down in chosen category
+        $("#option .dropdown-item").on("click", function () {
+            category = $(this).data("id");
+            $(".chosen").text(category)
         })
 
-         $("#option .dropdown-item").on("click", function () {
-          category = $(this).data("id");
-            // add code to display chosen value from drop down in chosen category
-        })
 
 
         // Add expense button
@@ -141,7 +145,7 @@
             // If we have a title and password  we run the sendPost function and clear the form
             sendPost(coorData.amount, coorData.category, coorData.company, coorData.note);
             amount.val("");
-    
+
             company.val("");
             note.val("");
         });

@@ -1,17 +1,90 @@
-form.signup,
-form.login {
-  margin-top: 50px;
+.footer{
+  margin-bottom: 10px;
+  
 }
 
-.forum-post-card {
-  width: 100%;
+div.at-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.at-item {
+  font-size: 55px;
+  color: #09921c;
+  animation-name: focus-in-contract;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+@keyframes focus-in-contract {
+  0%{
+    letter-spacing: 1em;
+    filter: blur(15px);
+    opacity: 0;
+  }
+  100%{
+    filter: blur(0);
+    opacity: 1;
+  }
 }
 
-.forum-post {
-  width: 100%;
+div.at-container2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.at-item2 {
+  color: #e0e7f3;
+  animation-name: slide-right;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: reverse;
+  animation-fill-mode: none;
+}
+@keyframes slide-right {
+  0%{
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100%{
+    -webkit-transform: translateX(150px);
+    transform: translateX(1500px);
+  }
 }
 
-footer {
-  text-align: center;
-  background-color: black;
+div.at-container3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
+.at-item3 {
+  height: 200px;
+  border-radius: 18px;
+  margin-top: 10px;
+  animation-name: slide-right;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: reverse;
+  animation-fill-mode: none;
+}
+@keyframes slide-right {
+  0%{
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100%{
+    -webkit-transform: translateX(150px);
+    transform: translateX(1500px);
+  }
+}
+
