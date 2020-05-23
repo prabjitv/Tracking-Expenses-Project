@@ -24,7 +24,7 @@
                 <!-- add is-active class with jquery-->
                 <div class="dropdown-trigger is-fluid">
                     <button id="drop-btn" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                        <span>Category</span>
+                        <span class="dropdown-text">Category</span>
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
@@ -41,16 +41,12 @@
                         <a class="dropdown-item " data-id="3">
                             Rent
                         </a>
+                        <a class="dropdown-item " data-id="4">
+                            Income
+                        </a>
                     </div>
                 </div>
 
-                <div class="field">
-                    <div class="control">
-                        <p class="chosen">
-                            Chosen Category:
-                        </p>
-                    </div>
-                </div>
 
             </div>
             <!-- end category block -->
@@ -134,8 +130,23 @@
 
         $("#option .dropdown-item").on("click", function () {
             category = $(this).data("id");
-            // add code to display chosen value from drop down in chosen category
+
+            if ($(this).data("id") == "1") {
+                $(".dropdown-text").text("Food")
+            }
+            else if ($(this).data("id") == "2") {
+                $(".dropdown-text").text("Bills")
+            }
+            else if ($(this).data("id") == "3") {
+                $(".dropdown-text").text("Rent")
+            }
+            else if ($(this).data("id") == "4") {
+                $(".dropdown-text").text("Income")
+            }
         })
+
+        // add code to display chosen value from drop down in chosen category
+
 
 
         // Add expense button

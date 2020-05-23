@@ -6,11 +6,11 @@
     <div class="columns">
         <div class="column">
             <div class="title" style="text-align: center;">Dashboard!</div>
-            <h4 class="display-6">Hello, {{user.email}}!</h4>
+            <h4 class="display-6 is-size-4">Hello, {{user.email}}!</h4>
             <br>
             <div class="box ">
                 <p>
-                    Current Balance:   {{balance}}
+                    Current Balance: {{balance}}
                 </p>
             </div>
 
@@ -213,9 +213,8 @@
 
         <br>
         <div class="column">
-            <div class="title" style="text-align: center;">Trend Graph!</div>
-
-            <P> this is where the Graph Goes!</P>
+            <div class="title" style="text-align: center;">Your CashMap for the Day</div>
+            <div><canvas id="myChart" width="300" height="300"></canvas></div>
 
         </div>
 
@@ -227,12 +226,15 @@
 
 
 
-{{!-- <script>
+<script>
     $(document).ready(function () {
         // Getting references to our form and inputs
         const postForm = $("form.forum-post");
         const titleInput = $("input#title-input");
         const bodyInput = $("textarea#body-input");
+        let timeData = 0;
+        let dataArray = [0];
+
 
         // When the form is submitted, we validate there's a title and body entered
         postForm.on("submit", function (event) {
@@ -268,5 +270,81 @@
                     console.log(err);
                 });
         }
+
+        function getPost() {
+            $.get("/api/coordinates", function (data) {
+
+
+                if (timeData === 0) {
+                    todaysData(data);
+                }
+
+
+            })
+        }
+        getPost();
+        console.log("dataArray", dataArray);
+
+        
+        //Creates a data array of balance changes for the current date
+        function todaysData(data) {
+            for (let i = 0; i < data.length; i++) {
+
+
+                if (data[i].createdAt.substring(0, 10) != moment().utcOffset(5).format("YYYY-MM-DD")) {
+                    
+                    console.log(data[i]);
+                    dataArray[0] += (data[i].amount);
+                }
+                else if (data[i].createdAt.substring(0, 10) === moment().utcOffset(5).format("YYYY-MM-DD")) {
+                    console.log(data[i].amount)
+                    dataArray.push(data[i].amount + dataArray[dataArray.length - 1]);
+                };
+
+            }
+            console.log(dataArray)
+            displayChart();
+        }
+
+        function displayChart() {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                    datasets: [{
+                        data: dataArray,
+                        label: "Balance",
+                        borderColor: "#3e95cd",
+                        fill: false,
+                        showLines: true
+                    }
+                    ]
+                },
+                options: {
+
+                    title: {
+                        display: true,
+                        text: 'Coordinates'
+                    },
+                    scales: {
+                        yAxes: [{
+                            responsive: true,
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: "$"
+                            },
+                            ticks: {
+                                max: 2000,
+                                min: -2000,
+                                stepSize: 250,
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
     });
-</script> --}}
+</script>
