@@ -133,15 +133,23 @@
 
             if ($(this).data("id") == "1") {
                 $(".dropdown-text").text("Food")
+                income.attr("style", "display: none");
+                expense.attr("style", "display: inline");
             }
             else if ($(this).data("id") == "2") {
                 $(".dropdown-text").text("Bills")
+                income.attr("style", "display: none");
+                expense.attr("style", "display: inline");
             }
             else if ($(this).data("id") == "3") {
                 $(".dropdown-text").text("Rent")
+                income.attr("style", "display: none");
+                expense.attr("style", "display: inline");
             }
             else if ($(this).data("id") == "4") {
                 $(".dropdown-text").text("Income")
+                expense.attr("style", "display: none");
+                income.attr("style", "display: inline");
             }
         })
 
