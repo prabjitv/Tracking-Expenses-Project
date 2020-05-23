@@ -314,6 +314,10 @@
                 };
 
             }
+            console.log(dataArray);
+            if(dataArray.length > 10){
+                dataArray = dataArray.slice((dataArray.length - 10) , (dataArray.length))
+            }
             maxGraphBounds = dataArray.reduce((a,b) => Math.max(a,b));
             console.log(dataArray);
             console.log(maxGraphBounds);
