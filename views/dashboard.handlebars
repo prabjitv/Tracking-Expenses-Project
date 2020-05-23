@@ -6,7 +6,7 @@
     <div class="columns">
         <div class="column">
             <div class="title" style="text-align: center;">Dashboard!</div>
-            <h4 class="display-6 is-size-4">Hello, {{user.email}}!</h4>
+            <h4 class="display-6 is-size-4 email-user">Hello, {{user.email}}!</h4>
             <br>
             <div class="box ">
                 <p>
@@ -214,7 +214,7 @@
         <br>
         <div class="column">
             <div class="title" style="text-align: center;">Your CashMap for the Day</div>
-            <div><canvas id="myChart" width="300" height="300"></canvas></div>
+            <div><canvas id="myChart" width="100px" height="100px"></canvas></div>
 
         </div>
 
@@ -234,7 +234,9 @@
         const bodyInput = $("textarea#body-input");
         let timeData = 0;
         let dataArray = [0];
-
+        let userEmail = $(".email-user").text().substring(7,($(".email-user").text().length -1));
+        let currentUserId = "";
+        let maxGraphBounds = 0;
 
         // When the form is submitted, we validate there's a title and body entered
         postForm.on("submit", function (event) {
@@ -271,19 +273,29 @@
                 });
         }
 
+        function getUser(){
+            $.get("/api/users", function(data){
+                console.log(data);
+                for(let i = 0; i < data.length; i++ ){
+                    if( data[i].email === userEmail){
+                        currentUserId = data[i].id;
+                    }
+                }
+                
+            })
+        }
+
         function getPost() {
             $.get("/api/coordinates", function (data) {
-
-
                 if (timeData === 0) {
                     todaysData(data);
                 }
-
-
             })
         }
+        getUser();
         getPost();
         console.log("dataArray", dataArray);
+        console.log(userEmail);
 
         
         //Creates a data array of balance changes for the current date
@@ -291,18 +303,20 @@
             for (let i = 0; i < data.length; i++) {
 
 
-                if (data[i].createdAt.substring(0, 10) != moment().utcOffset(5).format("YYYY-MM-DD")) {
+                if (data[i].createdAt.substring(0, 10) != moment().utcOffset(5).format("YYYY-MM-DD") && data[i].UserId == currentUserId) {
                     
                     console.log(data[i]);
                     dataArray[0] += (data[i].amount);
                 }
-                else if (data[i].createdAt.substring(0, 10) === moment().utcOffset(5).format("YYYY-MM-DD")) {
+                else if (data[i].createdAt.substring(0, 10) === moment().utcOffset(5).format("YYYY-MM-DD") && data[i].UserId == currentUserId) {
                     console.log(data[i].amount)
                     dataArray.push(data[i].amount + dataArray[dataArray.length - 1]);
                 };
 
             }
-            console.log(dataArray)
+            maxGraphBounds = dataArray.reduce((a,b) => Math.max(a,b));
+            console.log(dataArray);
+            console.log(maxGraphBounds);
             displayChart();
         }
 
@@ -336,8 +350,8 @@
                                 labelString: "$"
                             },
                             ticks: {
-                                max: 2000,
-                                min: -2000,
+                                max: (maxGraphBounds + 500),
+                                min: -(maxGraphBounds + 500),
                                 stepSize: 250,
                                 beginAtZero: true
                             }
