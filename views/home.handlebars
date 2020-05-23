@@ -1,89 +1,99 @@
 {{> navbar user}}
 
+
+{{!-- container 1 --}}
 <div class="container is-fluid">
     <div class="column">
-        {{!-- <div class="column"> --}}
         <div class="title" style="text-align: center;">Welcome To!</div>
 
+        {{!-- page name --}}
         <div class='at-container'>
             <h1 class='at-item'>Cash map
             </h1>
         </div>
 
+        {{!-- introductory text --}}
         <div class='at-container2'>
             <p class='at-item2'>
-                This is an applications that allows you to sign up and keep track of your expenses, 
+                This is an applications that allows you to sign up and keep track of your expenses,
                 account and view transaction trends
             </p>
         </div>
 
+        {{!-- logo --}}
         <div class='at-container3'>
             <img class='at-item3' src="ms-icon-150x150.png" alt="cash map logo">
-                
-           
+
+
         </div>
 
-
-
-
-
-
-        {{!-- </div>
-        <div class="column">
-            <div class="title" style="text-align: center;">Trend Graph!</div>
-
-            <P> this is where the Graph Goes!</P>
-
-        </div> --}}
-
-
     </div>
+
+</div>
+
+{{!-- container 2 --}}
+<div class="container is-fluid">
+    {{!-- card 1 --}}
+    <div class="column">
+        <div class="card">
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-60x60">
+                            <img src="Dashboard.png" alt="App Dashboard screenshot">
+                        </figure>
+                    </div>
+
+                    <div class="media-content">
+                        <p class="title is-4">Dashboard</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    After you sign up and log in you'll be directed to the main user Dashboard that will you
+                    give
+                    you information about
+                    your account including current balance, spent today, earned today, difference and even a
+                    chart
+                    showing recent trends.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- card 2 --}}
+    <div class="column">
+        <div class="card">
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-60x60">
+                            <img src="Coordinates.png" alt="App Coordinates screenshot">
+                        </figure>
+                    </div>
+
+                    <div class="media-content">
+                        <p class="title is-4">Coordinates</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    Coordinates is the place you get to add an expense or income, you are also able to select an
+                    expense category and add
+                    a note with a description of your expenses or income.
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
 
 
 
-{{!-- <script>
+<script>
     $(document).ready(function () {
-        // Getting references to our form and inputs
-        const postForm = $("form.forum-post");
-        const titleInput = $("input#title-input");
-        const bodyInput = $("textarea#body-input");
 
-        // When the form is submitted, we validate there's a title and body entered
-        postForm.on("submit", function (event) {
-            event.preventDefault();
-            console.log(bodyInput.val(), titleInput.val())
-            var postData = {
-                title: titleInput.val().trim(),
-                body: bodyInput.val().trim()
-            };
-
-            if (!postData.title || !postData.body) {
-                return;
-            }
-
-
-            // If we have a title and password  we run the sendPost function and clear the form
-            sendPost(postData.title, postData.body);
-            titleInput.val("");
-            bodyInput.val("");
-        });
-
-        // sendPost does a post to our "api/posts" route and if successful, redirects us the the forum page
-        function sendPost(title, body) {
-            $.post("/api/posts", {
-                title: title,
-                body: body
-            })
-                .then(function () {
-                    window.location.replace("/forum");
-                    // If there's an error, log the error
-                })
-                .catch(function (err) {
-                    console.log(err);
-                });
-        }
     });
-</script> --}}
+</script>
