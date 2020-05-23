@@ -77,9 +77,30 @@
 
         </div>
         <div class="column">
-            Second column
+            <div class="title" style="text-align: center;">Recent Transactions</div>
+            <div id="recent" class="box">
+                <table class="recent">
+                    <tr>
+                        <th>Amount</th>
+                        <th>Company</th>
+                        <th>notes</th>
+                    </tr>
 
-            <P> something can go here</P>
+                    {{#each coordinates}}
+                    <tr>
+                        <td>${{this.amount}}</td>
+                        <td>{{this.company}}</td>
+                        <td>{{this.notes}}</td>
+
+                    </tr>
+                    {{/each}}
+
+
+                </table>
+
+            </div>
+
+
 
         </div>
 
@@ -109,6 +130,7 @@
 
         $("#option .dropdown-item").on("click", function () {
             category = $(this).data("id");
+
             if ($(this).data("id") == "1") {
                 $(".dropdown-text").text("Food")
             }
