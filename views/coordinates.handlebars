@@ -6,7 +6,7 @@
         <div class="column">
             <div class="title" style="text-align: center;">Coordinates</div>
             <p>
-                Today's Date: {{createdAt}}
+                Today's Date: 
             </p>
 
             <div class="field">
@@ -82,15 +82,17 @@
                 <table class="recent">
                     <tr>
                         <th>Amount</th>
+                        {{!-- <th>Category</th> --}}
                         <th>Company</th>
                         <th>notes</th>
                     </tr>
 
                     {{#each coordinates}}
                     <tr>
-                        <td>${{this.amount}}</td>
-                        <td>{{this.company}}</td>
-                        <td>{{this.notes}}</td>
+                        <td>${{amount}}</td>
+                        {{!-- <td>{{name}}</td> --}}
+                        <td>{{company}}</td>
+                        <td>{{notes}}</td>
 
                     </tr>
                     {{/each}}
@@ -121,13 +123,6 @@
         const note = $("#note");
 
 
-
-        // category button function
-        $(catBtn).on("click", function () {
-            $("#category").toggleClass("is-active");
-            // add code to display chosen value from drop down in chosen category
-        })
-
         $("#option .dropdown-item").on("click", function () {
             category = $(this).data("id");
 
@@ -143,14 +138,27 @@
             else if ($(this).data("id") == "4") {
                 $(".dropdown-text").text("Income")
             }
-        })
+        });
 
-        // add code to display chosen value from drop down in chosen category
+        function displayCategory() {
+
+            if (CategoryId == "1") {
+                $("#cat-tab").text("Food")
+            }
+            else if (CategoryId == "2") {
+                $("#cat-tab").text("Bills")
+            }
+            else if (CategoryId == "3") {
+                $("#cat-tab").text("Rent")
+            }
+            else if (CategoryId == "4") {
+                $("#cat-tab").text("Income")
+            }
+        };
 
 
 
         // Add expense button
-
         $(expense).on("click", function () {
             event.preventDefault();
             console.log(amount.val(), category, company.val(), note.val())
@@ -173,6 +181,8 @@
 
             company.val("");
             note.val("");
+
+            
         });
 
         // If income button clicked
@@ -199,6 +209,7 @@
 
             company.val("");
             note.val("");
+
         });
 
 
